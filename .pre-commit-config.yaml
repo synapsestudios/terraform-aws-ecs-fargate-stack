@@ -1,0 +1,20 @@
+- repo: git://github.com/antonbabenko/pre-commit-terraform
+  rev: v1.31.0 # Get the latest from: https://github.com/antonbabenko/pre-commit-terraform/releases
+  hooks:
+    - id: terraform_fmt
+    - id: terraform_tflint
+      args:
+        - 'args=--deep'
+        - 'args=--enable-rule=terraform_documented_variables'
+    - id: terraform_docs
+      args:
+        - '--args=--sort-inputs-by-required'
+
+- repo: git://github.com/awslabs/git-secrets
+  rev: master
+  hooks:
+    - id: git-secrets
+      name: Git Secrets
+      description: git-secrets scans commits, commit messages, and --no-ff merges to prevent adding secrets into your git repositories.
+      entry: 'git-secrets --scan'
+      language: script
