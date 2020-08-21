@@ -1,0 +1,18 @@
+[
+  {
+    "portMappings": [
+      {
+        "hostPort": 80,
+        "protocol": "tcp",
+        "containerPort": 80
+      }
+    ],
+    "cpu": 256,
+    "mountPoints": [],
+    "memory": 512,
+    "volumesFrom": [],
+    "image": "utensils/nginx",
+    "essential": true,
+    "name": "nginx"
+  }
+]
