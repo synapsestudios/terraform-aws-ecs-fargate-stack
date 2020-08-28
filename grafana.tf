@@ -1,8 +1,9 @@
 locals {
-  loadbalancer_name = aws_lb.this.arn_suffix
-  region            = data.aws_region.current.name
-  name              = aws_lb.this.name
-  rds_instance      = length(aws_db_instance.this) != 0 ? aws_db_instance.this[0].id : aws_rds_cluster.this[0].id
+  loadbalancer_name    = aws_lb.this.arn_suffix
+  region               = data.aws_region.current.name
+  name                 = aws_lb.this.name
+  rds_instance         = length(aws_db_instance.this) != 0 ? aws_db_instance.this[0].id : aws_rds_cluster.this[0].id
+  elasticsearch_domain = length(aws_elasticsearch_domain.this) > 0 ? aws_elasticsearch_domain.this[0].domain_name : "N/A"
 }
 
 #####################################
@@ -1071,7 +1072,7 @@ module "grafana_es_cluster_status" {
       namespace  = "AWS/ES"
       metricName = "ClusterStatus.green"
       statistics = ["Maximum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Green"
       period     = "$__interval"
     },
@@ -1081,7 +1082,7 @@ module "grafana_es_cluster_status" {
       namespace  = "AWS/ES"
       metricName = "ClusterStatus.yellow"
       statistics = ["Maximum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Yellow"
       period     = "$__interval"
     },
@@ -1091,7 +1092,7 @@ module "grafana_es_cluster_status" {
       namespace  = "AWS/ES"
       metricName = "ClusterStatus.red"
       statistics = ["Maximum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Red"
       period     = "$__interval"
     }
@@ -1125,7 +1126,7 @@ module "grafana_es_total_nodes" {
       namespace  = "AWS/ES"
       metricName = "Nodes"
       statistics = ["Minimum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Nodes"
       period     = "$__interval"
     }
@@ -1157,7 +1158,7 @@ module "grafana_es_cpu_utilization_data_nodes" {
       namespace  = "AWS/ES"
       metricName = "CPUUtilization"
       statistics = ["Average"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "CPU Utilization"
       period     = "$__interval"
     }
@@ -1189,7 +1190,7 @@ module "grafana_es_free_storage_space" {
       namespace  = "AWS/ES"
       metricName = "FreeStorageSpace"
       statistics = ["Sum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Free Space"
       period     = "$__interval"
     }
@@ -1219,7 +1220,7 @@ module "grafana_es_searchable_documents" {
       namespace  = "AWS/ES"
       metricName = "SearchableDocuments"
       statistics = ["Average"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Searchable Documents"
       period     = "$__interval"
     }
@@ -1249,7 +1250,7 @@ module "grafana_es_deleted_documents" {
       namespace  = "AWS/ES"
       metricName = "DeletedDocuments"
       statistics = ["Average"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Deleted Documents"
       period     = "$__interval"
     }
@@ -1279,7 +1280,7 @@ module "grafana_es_indexing_rate" {
       namespace  = "AWS/ES"
       metricName = "IndexingRate"
       statistics = ["Average"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Operations/Minute"
       period     = "$__interval"
     }
@@ -1309,7 +1310,7 @@ module "grafana_es_indexing_latency" {
       namespace  = "AWS/ES"
       metricName = "IndexingLatency"
       statistics = ["Average"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Latency"
       period     = "$__interval"
     }
@@ -1339,7 +1340,7 @@ module "grafana_es_search_rate" {
       namespace  = "AWS/ES"
       metricName = "SearchRate"
       statistics = ["Average"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Operations/Minute"
       period     = "$__interval"
     }
@@ -1369,7 +1370,7 @@ module "grafana_es_search_latency" {
       namespace  = "AWS/ES"
       metricName = "SearchLatency"
       statistics = ["Average"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Latency"
       period     = "$__interval"
     }
@@ -1401,7 +1402,7 @@ module "grafana_es_http_response_codes" {
       namespace  = "AWS/ES"
       metricName = "2xx"
       statistics = ["Sum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "2XX"
       period     = "$bar_graph_interval"
     },
@@ -1411,7 +1412,7 @@ module "grafana_es_http_response_codes" {
       namespace  = "AWS/ES"
       metricName = "3xx"
       statistics = ["Sum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "3XX"
       period     = "$bar_graph_interval"
     },
@@ -1421,7 +1422,7 @@ module "grafana_es_http_response_codes" {
       namespace  = "AWS/ES"
       metricName = "4xx"
       statistics = ["Sum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "4XX"
       period     = "$bar_graph_interval"
     },
@@ -1431,7 +1432,7 @@ module "grafana_es_http_response_codes" {
       namespace  = "AWS/ES"
       metricName = "5xx"
       statistics = ["Sum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "5XX"
       period     = "$bar_graph_interval"
     }
@@ -1463,7 +1464,7 @@ module "grafana_es_invalid_host_headers" {
       namespace  = "AWS/ES"
       metricName = "ElasticsearchRequests"
       statistics = ["Sum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Requests"
       period     = "$__interval"
     },
@@ -1473,7 +1474,7 @@ module "grafana_es_invalid_host_headers" {
       namespace  = "AWS/ES"
       metricName = "InvalidHostHeaderRequests"
       statistics = ["Sum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Invalid Host Header Requests"
       period     = "$__interval"
     }
@@ -1507,7 +1508,7 @@ module "grafana_es_thread_pools" {
       namespace  = "AWS/ES"
       metricName = "ThreadpoolWriteThreads"
       statistics = ["Maximum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Write Thread Count"
       period     = "$__interval"
     },
@@ -1517,7 +1518,7 @@ module "grafana_es_thread_pools" {
       namespace  = "AWS/ES"
       metricName = "ThreadpoolWriteQueue"
       statistics = ["Maximum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Write Queue Depth"
       period     = "$__interval"
     },
@@ -1527,7 +1528,7 @@ module "grafana_es_thread_pools" {
       namespace  = "AWS/ES"
       metricName = "ThreadpoolWriteRejected"
       statistics = ["Maximum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Write Rejected Count"
       period     = "$__interval"
     },
@@ -1537,7 +1538,7 @@ module "grafana_es_thread_pools" {
       namespace  = "AWS/ES"
       metricName = "ThreadpoolIndexThreads"
       statistics = ["Maximum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Index Thread Count"
       period     = "$__interval"
     },
@@ -1547,7 +1548,7 @@ module "grafana_es_thread_pools" {
       namespace  = "AWS/ES"
       metricName = "ThreadpoolIndexQueue"
       statistics = ["Maximum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Index Queue Depth"
       period     = "$__interval"
     },
@@ -1557,7 +1558,7 @@ module "grafana_es_thread_pools" {
       namespace  = "AWS/ES"
       metricName = "ThreadpoolIndexRejected"
       statistics = ["Maximum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Index Rejected Count"
       period     = "$__interval"
     },
@@ -1567,7 +1568,7 @@ module "grafana_es_thread_pools" {
       namespace  = "AWS/ES"
       metricName = "ThreadpoolSearchThreads"
       statistics = ["Maximum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Search Thread Count"
       period     = "$__interval"
     },
@@ -1577,7 +1578,7 @@ module "grafana_es_thread_pools" {
       namespace  = "AWS/ES"
       metricName = "ThreadpoolSearchQueue"
       statistics = ["Maximum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Search Queue Depth"
       period     = "$__interval"
     },
@@ -1587,7 +1588,7 @@ module "grafana_es_thread_pools" {
       namespace  = "AWS/ES"
       metricName = "ThreadpoolSearchRejected"
       statistics = ["Maximum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Search Rejected Count"
       period     = "$__interval"
     },
@@ -1597,7 +1598,7 @@ module "grafana_es_thread_pools" {
       namespace  = "AWS/ES"
       metricName = "ThreadpoolForce_mergeThreads"
       statistics = ["Maximum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Merge Thread Count"
       period     = "$__interval"
     },
@@ -1607,7 +1608,7 @@ module "grafana_es_thread_pools" {
       namespace  = "AWS/ES"
       metricName = "ThreadpoolForce_mergeQueue"
       statistics = ["Maximum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Merge Queue Depth"
       period     = "$__interval"
     },
@@ -1617,7 +1618,7 @@ module "grafana_es_thread_pools" {
       namespace  = "AWS/ES"
       metricName = "ThreadpoolForce_mergeRejected"
       statistics = ["Maximum"]
-      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = aws_elasticsearch_domain.this[0].domain_name }
+      dimensions = { ClientId = data.aws_caller_identity.current.account_id, DomainName = local.elasticsearch_domain }
       alias      = "Merge Rejected Count"
       period     = "$__interval"
     }
