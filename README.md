@@ -1,13 +1,13 @@
 # AWS ECS Fargate Cluster Spinnaker Compatible
 
-This module creates an AWS ECS Fargate cluster, VPC, SecurityGroups, RDS, ElastiCache, and ElasticSearch, with naming conventions compatible with Spinnaker. This is module is the core module for any new environment.
+This module creates an opinionated AWS ECS Fargate cluster, VPC, SecurityGroups, RDS, ElastiCache, and ElasticSearch, resources are created with Spinnaker`s [naming conventions](https://docs.armory.io/docs/overview/naming-conventions/#spinnaker-naming-conventions) and is intended to be used in conjunction [synapsestudios/terraform-aws-ecs-deployment](https://github.com/synapsestudios/terraform-aws-ecs-fargate-stack), or with a fresh Spinnaker pipeline. This is module is the core module for any new environment.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| terraform | ~> 0.12.6 |
+| terraform | ~> 0.12.29 |
 | aws | ~> 2.53 |
 | null | ~> 2.1 |
 | template | ~> 2.1 |

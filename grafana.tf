@@ -10,7 +10,7 @@ locals {
 # AWS ALB - Response Time Gauge/Meter
 #####################################
 module "grafana_alb_response_time_bargauge" {
-  source        = "git::https://github.com/synapsestudios/terraform-grafana-panel-bar-gauge.git?ref=release/v1.0.0"
+  source        = "git::https://github.com/synapsestudios/terraform-grafana-panel-bar-gauge.git?ref=v1.0.0"
   title         = "Response Time"
   id            = 0
   min           = 0
@@ -54,7 +54,7 @@ module "grafana_alb_response_time_bargauge" {
 # AWS ALB Grafana - RequestCount/TargetResponseTime
 ###################################################
 module "grafana_alb_request_response" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title            = "ALB ${local.name} RequestCount / TargetResponseTime"
   series_overrides = [{ alias = "Response Time", yaxis = 2 }]
@@ -97,7 +97,7 @@ module "grafana_alb_request_response" {
 # AWS ALB Grafana - HTTP Code Target
 ####################################
 module "grafana_alb_http_target_response_code" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "ALB ${local.name} Target Response Code"
   null_point_mode = "null"
@@ -162,7 +162,7 @@ module "grafana_alb_http_target_response_code" {
 # AWS ALB Grafana - HTTP Code ELB
 #################################
 module "grafana_alb_http_response_code" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "ALB ${local.name} HTTP Response Code"
   null_point_mode = "null"
@@ -217,7 +217,7 @@ module "grafana_alb_http_response_code" {
 # AWS ALB Grafana - Connection Count
 ####################################
 module "grafana_alb_connection_count" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "ALB ${local.name} Connection Count"
   grid_position   = { h = 5, w = 12, x = 0, y = 10 }
@@ -275,7 +275,7 @@ module "grafana_alb_connection_count" {
 # RDS OS Grafana - CPU Utilization
 ##################################
 module "grafana_rds_cpu_utilization" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "RDS ${var.namespace} CPU Utilization"
   null_point_mode = "connected"
@@ -304,7 +304,7 @@ module "grafana_rds_cpu_utilization" {
 # RDS OS Grafana - CPU Credit Usage
 ###################################
 module "grafana_rds_cpu_credit" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "RDS ${var.namespace} CPU Credit Usage"
   null_point_mode = "connected"
@@ -344,7 +344,7 @@ module "grafana_rds_cpu_credit" {
 # RDS OS Grafana - Available Memory
 ###################################
 module "grafana_rds_available_memory" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "RDS ${var.namespace} Available Memory"
   null_point_mode = "connected"
@@ -374,7 +374,7 @@ module "grafana_rds_available_memory" {
 # RDS OS Grafana - Swap Usage
 #############################
 module "grafana_rds_swap_usage" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "RDS ${var.namespace} Swap Usage"
   null_point_mode = "connected"
@@ -404,7 +404,7 @@ module "grafana_rds_swap_usage" {
 # RDS OS Grafana - Storage Space
 ################################
 module "grafana_rds_storage_space" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "RDS ${var.namespace} Storage Space"
   null_point_mode = "connected"
@@ -433,7 +433,7 @@ module "grafana_rds_storage_space" {
 # RDS OS Grafana - Disk IOPS
 ############################
 module "grafana_rds_disk_iops" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "RDS ${var.namespace} Disk IOPS"
   null_point_mode = "connected"
@@ -472,7 +472,7 @@ module "grafana_rds_disk_iops" {
 # RDS OS Grafana - Disk Latency
 ###############################
 module "grafana_rds_disk_latency" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "RDS ${var.namespace} Disk Latency"
   null_point_mode = "connected"
@@ -511,7 +511,7 @@ module "grafana_rds_disk_latency" {
 # RDS OS Grafana - Disk Queue Depth
 ###################################
 module "grafana_rds_disk_queue_depth" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "RDS ${var.namespace} Disk Queue Depth"
   null_point_mode = "null"
@@ -540,7 +540,7 @@ module "grafana_rds_disk_queue_depth" {
 # RDS OS Grafana - Disk Throughput
 ##################################
 module "grafana_rds_disk_throughput" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "RDS ${var.namespace} Disk Throughput"
   null_point_mode = "null"
@@ -579,7 +579,7 @@ module "grafana_rds_disk_throughput" {
 # RDS OS Grafana - Network Traffic
 ##################################
 module "grafana_rds_network_traffic" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "RDS ${var.namespace} Network Traffic"
   null_point_mode = "null"
@@ -619,7 +619,7 @@ module "grafana_rds_network_traffic" {
 # Redis Grafana - Cache
 #######################
 module "grafana_redis_cache" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "Redis ${var.namespace} Cache"
   null_point_mode = "null"
@@ -680,7 +680,7 @@ module "grafana_redis_cache" {
 # Redis Grafana - Commands
 ##########################
 module "grafana_redis_commands" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "Redis ${var.namespace} Commands"
   null_point_mode = "null"
@@ -770,7 +770,7 @@ module "grafana_redis_commands" {
 # Redis Grafana - Connections
 #############################
 module "grafana_redis_connections" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "Redis ${var.namespace} Connections"
   null_point_mode = "null"
@@ -810,7 +810,7 @@ module "grafana_redis_connections" {
 # Redis Grafana - Save In Progeess / Current Items
 ##################################################
 module "grafana_redis_items" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title            = "Redis ${var.namespace} Save In Progeess / Current Items"
   series_overrides = [for id in local.redis_cluster_id : { alias = "${id} Current Items", yaxis = 2 }]
@@ -851,7 +851,7 @@ module "grafana_redis_items" {
 # Redis Grafana - Bytes Used For Cache / Bytes Used For Replication
 ###################################################################
 module "grafana_redis_bytes_used_for_cache_and_replication" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title            = "Redis ${var.namespace} Bytes Used For Cache / Bytes Used For Replication"
   series_overrides = [for id in local.redis_cluster_id : { alias = "${id} Bytes Used For Replication", yaxis = 2 }]
@@ -892,7 +892,7 @@ module "grafana_redis_bytes_used_for_cache_and_replication" {
 # Redis Grafana - HyperLog / Replication Lag
 ############################################
 module "grafana_redis_hyperlog_replication_lag" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title            = "Redis ${var.namespace} HyperLog / Replication Lag"
   series_overrides = [for id in local.redis_cluster_id : { alias = "${id} Replication Lag", yaxis = 2 }]
@@ -935,7 +935,7 @@ module "grafana_redis_hyperlog_replication_lag" {
 # Redis Grafana - CPU Utilization
 #################################
 module "grafana_redis_cpu_utilization" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title            = "Redis ${var.namespace} CPU Utilization"
   series_overrides = [for id in local.redis_cluster_id : { alias = "${id} Engine CPU Utlization", yaxis = 2 }]
@@ -976,7 +976,7 @@ module "grafana_redis_cpu_utilization" {
 # Redis Grafana - Network Traffic
 #################################
 module "grafana_redis_network_traffic" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title            = "Redis ${var.namespace} Network Traffic"
   series_overrides = [for id in local.redis_cluster_id : { alias = "${id} Inbound", yaxis = 2 }]
@@ -1017,7 +1017,7 @@ module "grafana_redis_network_traffic" {
 # Redis Grafana - Memory / Swap
 ###############################
 module "grafana_redis_memory_and_swap" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title            = "Redis ${var.namespace} Freeable Memory / Swap Usage"
   series_overrides = [for id in local.redis_cluster_id : { alias = "${id} Freeable Memory", yaxis = 2 }]
@@ -1058,7 +1058,7 @@ module "grafana_redis_memory_and_swap" {
 # ElasticSearch Grafana - Cluster Status
 ########################################
 module "grafana_es_cluster_status" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "ElasticSearch ${var.namespace} Cluster Status"
   null_point_mode = "null"
@@ -1112,7 +1112,7 @@ module "grafana_es_cluster_status" {
 # ElasticSearch Grafana - Total Nodes
 #####################################
 module "grafana_es_total_nodes" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "ElasticSearch ${var.namespace} Total Nodes"
   null_point_mode = "null"
@@ -1144,7 +1144,7 @@ module "grafana_es_total_nodes" {
 # ElasticSearch Grafana - CPU Utilization Data Nodes
 ####################################################
 module "grafana_es_cpu_utilization_data_nodes" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "ElasticSearch ${var.namespace} CPU Utilization On All Data Nodes"
   null_point_mode = "null"
@@ -1176,7 +1176,7 @@ module "grafana_es_cpu_utilization_data_nodes" {
 # ElasticSearch Grafana - Free Storage Space
 ############################################
 module "grafana_es_free_storage_space" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "ElasticSearch ${var.namespace} Free Storage Space"
   null_point_mode = "null"
@@ -1206,7 +1206,7 @@ module "grafana_es_free_storage_space" {
 # ElasticSearch Grafana - Searchable Documents
 ##############################################
 module "grafana_es_searchable_documents" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "ElasticSearch ${var.namespace} Searchable Documents"
   null_point_mode = "null"
@@ -1236,7 +1236,7 @@ module "grafana_es_searchable_documents" {
 # ElasticSearch Grafana - Deleted Documents
 ###########################################
 module "grafana_es_deleted_documents" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "ElasticSearch ${var.namespace} Deleted Documents"
   null_point_mode = "null"
@@ -1266,7 +1266,7 @@ module "grafana_es_deleted_documents" {
 # ElasticSearch Grafana - Indexing Rate
 #######################################
 module "grafana_es_indexing_rate" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "ElasticSearch ${var.namespace} Indexing Rate"
   null_point_mode = "null"
@@ -1296,7 +1296,7 @@ module "grafana_es_indexing_rate" {
 # ElasticSearch Grafana - Indexing Latency
 ##########################################
 module "grafana_es_indexing_latency" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "ElasticSearch ${var.namespace} Indexing Latency"
   null_point_mode = "null"
@@ -1326,7 +1326,7 @@ module "grafana_es_indexing_latency" {
 # ElasticSearch Grafana - Search Rate
 #####################################
 module "grafana_es_search_rate" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "ElasticSearch ${var.namespace} Search Rate"
   null_point_mode = "null"
@@ -1356,7 +1356,7 @@ module "grafana_es_search_rate" {
 # ElasticSearch Grafana - Search Latency
 ########################################
 module "grafana_es_search_latency" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "ElasticSearch ${var.namespace} Search Latency"
   null_point_mode = "null"
@@ -1386,7 +1386,7 @@ module "grafana_es_search_latency" {
 # ElasticSearch Grafana - HTTP Resonse Codes
 ############################################
 module "grafana_es_http_response_codes" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "ElasticSearch ${var.namespace} HTTP Response Codes"
   null_point_mode = "null"
@@ -1450,7 +1450,7 @@ module "grafana_es_http_response_codes" {
 # ElasticSearch Grafana - Invalid Host Headers
 ##############################################
 module "grafana_es_invalid_host_headers" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "ElasticSearch ${var.namespace} Invalid Host Headers"
   null_point_mode = "connected"
@@ -1494,7 +1494,7 @@ module "grafana_es_invalid_host_headers" {
 # ElasticSearch Grafana - Thread Pools
 ######################################
 module "grafana_es_thread_pools" {
-  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=release/v1.0.0"
+  source = "git::https://github.com/synapsestudios/terraform-grafana-panel-graph.git?ref=v1.0.0"
 
   title           = "ElasticSearch ${var.namespace} Thread Pools"
   null_point_mode = "null"
