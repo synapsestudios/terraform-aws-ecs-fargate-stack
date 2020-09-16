@@ -1,0 +1,6 @@
+{
+    "current_version": "1.0.0",
+    "files": [],
+    "search": "{current_version}",
+    "replace": "{new_version}"
+  }
