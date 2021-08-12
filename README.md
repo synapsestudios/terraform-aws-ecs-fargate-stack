@@ -90,43 +90,6 @@ This module creates an opinionated AWS ECS Fargate cluster, VPC, SecurityGroups,
 | ecs\_tasks\_security\_group | ECS Tasks SecurityGroup ID. |
 | elasticsearch\_security\_group | ElasticSeasrch SecurityGroup ID. |
 | es\_endpoint | ElasticSearch domain-specific endpoint used to submit index, search, and data upload requests. |
-| grafana\_alb\_connection\_count | Grafana Panel for ALB Connection Counts. |
-| grafana\_alb\_http\_response\_code | Grafana Panel for ALB HTTP Response Codes. |
-| grafana\_alb\_http\_target\_response\_code | Grafana Panel for ALB HTTP Target Response Codes. |
-| grafana\_alb\_response\_time\_bargauge | Grafan Meter Panel for ALB Response Times. |
-| grafana\_es\_cluster\_status | Grafana Panel for ElasticSearch Cluster Status. |
-| grafana\_es\_cpu\_utilization\_data\_nodes | Grafana Panel for ElasticSearch CPU Utilization On All Data Nodes. |
-| grafana\_es\_deleted\_documents | Grafana Panel for ElasticSearch Deleted Documents. |
-| grafana\_es\_free\_storage\_space | Grafana Panel for ElasticSearch Free Storage Space. |
-| grafana\_es\_http\_response\_codes | Grafana Panel for ElasticSearch HTTP Response Codes. |
-| grafana\_es\_indexing\_latency | Grafana Panel for ElasticSearch Indexing Latency. |
-| grafana\_es\_indexing\_rate | Grafana Panel for ElasticSearch Indexing Rate. |
-| grafana\_es\_invalid\_host\_headers | Grafana Panel for ElasticSearch Invalid Host Header Requests. |
-| grafana\_es\_search\_latency | Grafana Panel for ElasticSearch Search Latency. |
-| grafana\_es\_search\_rate | Grafana Panel for ElasticSearch Search Rate. |
-| grafana\_es\_searchable\_documents | Grafana Panel for ElasticSearch Searchable Documents. |
-| grafana\_es\_thread\_pools | Grafana Panel for ElasticSearch Thread Pools. |
-| grafana\_es\_total\_nodes | Grafana Panel for ElasticSearch Total Nodes. |
-| grafana\_rds\_available\_memory | Grafana Panel for RDS Available Memory. |
-| grafana\_rds\_cpu\_credit | Grafana Panel for RDS CPU Credit Usage. |
-| grafana\_rds\_cpu\_utilization | Grafana Panel for RDS CPU Utilization. |
-| grafana\_rds\_disk\_iops | Grafana Panel for RDS Disk IOPS. |
-| grafana\_rds\_disk\_latency | Grafana Panel for RDS Disk Latency. |
-| grafana\_rds\_disk\_queue\_depth | Grafana Panel for RDS Disk Queue Depth. |
-| grafana\_rds\_disk\_throughput | Grafana Panel for RDS Disk Throughput. |
-| grafana\_rds\_network\_traffic | Grafana Panel for RDS Network Traffic. |
-| grafana\_rds\_storage\_space | Grafana Panel for RDS Storage Space. |
-| grafana\_rds\_swap\_usage | Grafana Panel for RDS Swap Usage. |
-| grafana\_redis\_bytes\_used\_for\_cache\_and\_replication | Grafana Panel for Redis Bytes Used For Cache / Bytes Used For Replication. |
-| grafana\_redis\_cache | Grafana Panel for Redis Cache Stats. |
-| grafana\_redis\_commands | Grafana Panel for Redis Command Stats. |
-| grafana\_redis\_connections | Grafana Panel for Redis Connections. |
-| grafana\_redis\_cpu\_utilization | Grafana Panel for Redis CPU Utilization. |
-| grafana\_redis\_hyperlog\_replication\_lag | Grafana Panel for Redis HyperLog / Replication Lag. |
-| grafana\_redis\_items | Grafana Panel for Redis Save In Progress / Current Connections. |
-| grafana\_redis\_memory\_and\_swap | Grafana Panel for Redis Freeable Memory / Swap Usage. |
-| grafana\_redis\_network\_traffic | Grafana Panel for Redis Network Traffic. |
-| grafna\_alb\_request\_count\_target\_response\_time | Grafana Panel for ALB RequestCount / TargetResponseTime. |
 | http\_listener\_arn | HTTP Listener ARN. |
 | https\_listener\_arn | HTTPS Listener ARN. |
 | load\_balancer\_arn | LoadBalancer ARN. |

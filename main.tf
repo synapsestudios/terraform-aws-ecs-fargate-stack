@@ -23,6 +23,7 @@ data "aws_region" "current" {}
 #####################
 module "vpc" {
   source                                 = "terraform-aws-modules/vpc/aws"
+  version                                = "2.53"
   name                                   = var.namespace
   cidr                                   = var.vpc_cidr
   azs                                    = ["us-west-2a", "us-west-2b", "us-west-2c"]
