@@ -33,7 +33,7 @@ resource "aws_db_instance" "this" {
 # RDS Aurora Cluster
 ####################
 resource "aws_rds_cluster" "this" {
-  count = var.use_aurora ? 1 : 0
+  count = var.use_aurora && ! var.disable_db ? 1 : 0
 
   cluster_identifier      = var.namespace
   engine                  = var.database_engine
@@ -54,7 +54,7 @@ resource "aws_rds_cluster" "this" {
 }
 
 resource "aws_rds_cluster_instance" "this" {
-  count = var.use_aurora ? var.database_instance_count : 0
+  count = var.use_aurora && ! var.disable_db ? var.database_instance_count : 0
 
   engine               = var.database_engine
   engine_version       = var.database_engine_version
