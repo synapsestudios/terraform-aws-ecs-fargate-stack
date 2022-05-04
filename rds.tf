@@ -2,7 +2,7 @@
 # RDS Single Instance
 #####################
 resource "aws_db_instance" "this" {
-  count = var.use_aurora ? 0 : 1
+  count = var.use_aurora || var.disable_db ? 0 : 1
 
   allocated_storage               = var.database_storage_size
   apply_immediately               = var.database_apply_immediately
@@ -33,7 +33,7 @@ resource "aws_db_instance" "this" {
 # RDS Aurora Cluster
 ####################
 resource "aws_rds_cluster" "this" {
-  count = var.use_aurora ? 1 : 0
+  count = var.use_aurora && ! var.disable_db ? 1 : 0
 
   cluster_identifier      = var.namespace
   engine                  = var.database_engine
@@ -54,7 +54,7 @@ resource "aws_rds_cluster" "this" {
 }
 
 resource "aws_rds_cluster_instance" "this" {
-  count = var.use_aurora ? var.database_instance_count : 0
+  count = var.use_aurora && ! var.disable_db ? var.database_instance_count : 0
 
   engine               = var.database_engine
   engine_version       = var.database_engine_version
@@ -82,6 +82,7 @@ resource "aws_rds_cluster_instance" "this" {
 # Route53 CNAME for RDS Endpoint
 ################################
 resource "aws_route53_record" "postgres" {
+  count   = var.disable_db ? 0 : 1
   zone_id = local.zone_id
   name    = "postgres"
   type    = "CNAME"

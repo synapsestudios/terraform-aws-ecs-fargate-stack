@@ -50,6 +50,12 @@ variable "alb_ide_timeout" {
 #########################
 # RDS - Database Settings
 #########################
+variable "disable_db" {
+  type        = bool
+  description = "If true, this setting will prevent this module from creating an RDS database"
+  default     = false
+}
+
 variable "use_aurora" {
   type        = bool
   description = "If true, an Aurora Database cluster will be provisioned."

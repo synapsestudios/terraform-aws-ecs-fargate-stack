@@ -40,7 +40,7 @@ output "database_security_group" {
 
 output "database_endpoint" {
   description = "Database Endpoint."
-  value       = length(aws_db_instance.this) >= 1 ? aws_db_instance.this[0].address : aws_rds_cluster.this[0].endpoint
+  value       = length(aws_db_instance.this) >= 1 ? aws_db_instance.this[0].address : length(aws_rds_cluster.this) >= 1 ? aws_rds_cluster.this[0].endpoint : ""
 }
 
 output "database_endpoint_reader" {
